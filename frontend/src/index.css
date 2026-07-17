@@ -1,0 +1,418 @@
+/* ==========================================================================
+   AETHER OS SUPREME - COMPONENT MATRIX FIXED EDITION
+   ========================================================================== */
+
+:root {
+  --bg-dark: #060913;
+  --bg-card: rgba(13, 20, 38, 0.45);
+  --border-neon: rgba(0, 240, 255, 0.2);
+  --neon-cyan: #00f0ff;
+  --neon-pink: #ff007f;
+  --neon-green: #00ff66;
+  --neon-orange: #ffaa00;
+  --text-main: #e2e8f0;
+  --text-muted: #64748b;
+  --font-code: 'Fira Code', 'Courier New', monospace;
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* BASE RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-code);
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow: hidden;
+  background-image: 
+    linear-gradient(rgba(18, 24, 45, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 24, 45, 0.5) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* MAIN DASHBOARD CONTAINER */
+.aether-dashboard {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: radial-gradient(circle at 50% 50%, #10162d 0%, var(--bg-dark) 80%);
+}
+
+/* SIDEBAR REVOLUTION */
+.aether-sidebar {
+  width: 280px;
+  background: rgba(8, 12, 24, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid var(--border-neon);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  z-index: 10;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--neon-green);
+  text-shadow: 0 0 10px rgba(0, 255, 102, 0.4);
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-scroll-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 20px;
+}
+
+.sidebar-log-item {
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-log-item:hover {
+  background: rgba(0, 240, 255, 0.05);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+  transform: translateX(4px);
+}
+
+.sidebar-status {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* CORE WORKSPACE PANELS */
+.aether-core-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+.header-meta h1 {
+  font-size: 28px;
+  letter-spacing: 4px;
+  font-weight: 900;
+  margin-bottom: 4px;
+}
+
+.neon-text-glow {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.6);
+}
+
+.subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.neural-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  margin-bottom: 12px;
+}
+
+/* INPUT COMPONENT / CONTROL DOCK */
+.hardware-input-dock {
+  display: flex;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.input-glow-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  background: rgba(5, 8, 18, 0.6);
+  border: 1px solid var(--border-neon);
+  border-radius: 12px;
+  box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.05);
+  transition: all 0.3s;
+}
+
+.input-glow-wrapper:focus-within {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.input-glow-wrapper input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 16px 20px;
+  color: var(--text-main);
+  font-size: 14px;
+  outline: none;
+}
+
+.hardware-mic-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 0 20px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.hardware-mic-btn.listening {
+  color: var(--neon-pink);
+  animation: pulse 1.5s infinite;
+}
+
+.hardware-ignite-btn {
+  background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+  border: 1px solid var(--neon-cyan);
+  color: white;
+  padding: 0 30px;
+  border-radius: 12px;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 20px rgba(0, 180, 216, 0.3);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hardware-ignite-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 240, 255, 0.5);
+  background: linear-gradient(135deg, var(--neon-cyan) 0%, #00b4d8 100%);
+}
+
+/* GRID LAYOUT FOR NETWORK WORKSPACE */
+.matrix-workspace-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 30px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* SPATIAL NETWORK ORB BOX (FIXED WITH CSS GRID) */
+.spatial-network-node-box {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  position: relative;
+  
+  /* GRID REVOLUTION */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  padding: 40px 30px;
+  min-height: 380px;
+  align-items: center;
+  justify-items: center;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.svg-network-vectors {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.laser-vector {
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+  opacity: 0.15;
+  transition: all 0.5s;
+}
+
+.laser-vector.active {
+  stroke-width: 2.5;
+  stroke-dasharray: none;
+  opacity: 0.8;
+  animation: dash 30s linear infinite;
+}
+
+/* CORE CENTRAL ORB (FLOATS PRECISELY IN THE MIDDLE) */
+.spatial-core-orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130px;
+  height: 130px;
+  background: rgba(5, 9, 23, 0.95);
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  text-align: center;
+  color: var(--text-muted);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+.spatial-core-orb span {
+  color: var(--text-main);
+  font-weight: bold;
+  margin-top: 4px;
+  letter-spacing: 1px;
+}
+
+/* RELATIVE NODE POINTS WITH NO CLASH RISK */
+.spatial-node-point {
+  position: relative;
+  z-index: 3;
+  width: 95%;
+  max-width: 210px;
+  padding: 12px 18px;
+  background: rgba(7, 11, 26, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.spatial-node-point:hover, .spatial-node-point.active-glow {
+  color: #fff;
+  border-color: var(--node-color, var(--neon-cyan));
+  box-shadow: 0 0 25px var(--node-color, var(--neon-cyan));
+  transform: scale(1.03);
+}
+
+/* PERFECT GRID CORNER ANCHORS */
+.top-left { justify-self: start; align-self: start; }
+.top-right { justify-self: end; align-self: start; }
+.bottom-left { justify-self: start; align-self: end; }
+.bottom-right { justify-self: end; align-self: end; }
+
+/* MONITOR DISPLAY SCREEN */
+.workspace-terminal-monitor {
+  background: rgba(5, 8, 16, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+
+.monitor-top-bar {
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.01);
+  display: flex;
+  align-items: center;
+}
+
+.monitor-title {
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.monitor-screen-body {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  position: relative;
+}
+
+/* LIVE ARTIFACT EMBED SCREEN */
+.embedded-artifact-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+
+.terminal-text-flow {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #a3b3c9;
+}
+
+/* SHIMMER RUNNING LIGHTS */
+.matrix-shimmer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 40px;
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px dashed var(--border-neon);
+  color: var(--neon-cyan);
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.glitch-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 240, 255, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--neon-cyan);
+  animation: spin 1s linear infinite;
+}
+
+/* UTILITY MICROS & ANIMATIONS */
+.icon-spin { animation: spin 4s linear infinite; }
+.icon-pulse { animation: pulse 2s infinite; }
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
